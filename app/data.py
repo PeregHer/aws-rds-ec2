@@ -1,12 +1,16 @@
 import psycopg2
 import psycopg2.extras
 from datetime import datetime
+import os 
 
+HOST = os.environ['HOST']
+USER = os.environ['USER']
+PASSWORD = os.environ['PASSWORD']
 
 class Connexion:    
     @classmethod
     def open_db(cls):
-        cls.client = psycopg2.connect(host='db-brief.czpfycmrs28b.eu-west-3.rds.amazonaws.com', user='postgres', password='69,xF%6Yw', port='5432', database='exercises')
+        cls.client = psycopg2.connect(host=HOST, user=USER, password=PASSWORD, port='5432', database='exercises')
         cls.client.autocommit = True
         cls.cursor = cls.client.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
